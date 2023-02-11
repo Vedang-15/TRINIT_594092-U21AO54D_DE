@@ -1,0 +1,31 @@
+<%- include('partials/header') %>
+
+
+
+<% for(var i = 0; i< postArray.length; i++){ %>
+
+    <div class="card" style="width: 30rem;float: left;margin: 20px;text-align: center;">
+        <img class="card-img-top" src="images/logo.png" alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title"><%= postArray[i].name %></h5>
+          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          <a href="/listofngo/<%= postArray[i].ngoid %>" class="btn btn-primary">More Info</a>
+        </div>
+      </div>    
+
+
+    <!-- <div style = "display : inline;" class="card_1">
+        <br class="line_break">
+        <img src="images/logo.png" class="image3 center" alt="logo">
+        <div class="card-body">
+        <h2 class="card-title"><%= postArray[i].name %></h2>
+        <p class="card-text"><%= postArray[i].address %></p>
+        <a href="/listofngo/<%= postArray[i].ngoid %>" class="btn btn-primary">More Info</a>
+        </div>
+    </div> -->
+<% } %>
+
+
+
+
+<%- include('partials/footer') %>
