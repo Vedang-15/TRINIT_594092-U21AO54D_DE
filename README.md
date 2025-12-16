@@ -1,112 +1,143 @@
+# 🤝 PhilChar  
+### Crowdfunding & NGO Discovery Platform
 
-🤝 PhilChar (Crowdfunding & NGO Discovery Platform)
-This is a full-stack donation and discovery platform built using Node.js, Express, and MongoDB. It serves as a bridge between philanthropists (donors) and NGOs, helping connect people to causes they care about through interest-based matching.
+PhilChar is a **full-stack donation and NGO discovery platform** built using **Node.js, Express, and MongoDB**, designed to bridge the gap between philanthropists and NGOs.  
 
-The application features role-based secure authentication (Donors vs. NGOs), dynamic profile management, and a robust backend to handle funding data and user sessions. It was originally developed during a 48-hour hackathon.
+The platform features **role-based secure authentication**, **dynamic profile management**, and an **interest-based matching engine** that connects donors with causes they care about.
 
-🚀 Key Highlights
-Dual-User Ecosystem: Distinct workflows and dashboards for Donors and NGOs.
+🕒 Developed during a **48-hour hackathon** to address real-world funding visibility challenges faced by NGOs.
 
-Secure Authentication: Integrated Passport.js for Local and Google OAuth 2.0 strategies.
+---
 
-Smart Discovery: Allows donors to find NGOs based on specific fields of interest and funding needs.
+## 🚀 Project Status
+- ✅ Hackathon project completed in **48 hours**
+- 🧪 Currently designed for **local execution**
+- 📌 Deployment-ready with minor configuration
 
-Server-Side Rendering: Fast and dynamic UI delivery using EJS templates.
+---
 
-📌 Features
-🔐 Authentication & Security
-Google OAuth 2.0 Integration: One-click login/signup for ease of access.
+## 📌 Features
 
-Role-Based Access Control: Separate login portals for NGOs and Donors (/login vs /loginngo).
+### 🌐 Frontend (EJS)
+- User registration & login  
+  - Separate flows for **Donors** and **NGOs**
+- Dynamic dashboards with **server-side rendering (EJS)**
+- Responsive and user-friendly UI (Bootstrap)
+- Real-time form validation and error handling
 
-Session Management: Secure cookies using express-session and passport-session.
+---
 
-🏢 For NGOs
-Detailed Profiling: NGOs can list their mission, history, previous work, and funding requirements.
+### 🧠 Core Functionality
 
-Visibility: Create a public-facing profile to attract potential donors.
+#### 🔍 Smart Discovery Engine
+- Accepts donor interests (e.g., *Education*, *Health*)
+- Automatically filters and matches relevant NGOs
+- Reduces search time for donors
+- Improves visibility for smaller NGOs
 
-❤️ For Donors (Philanthropists)
-Interest Matching: Input personal interests to see relevant NGO recommendations.
+#### 🏢 NGO Profile Management
+- Comprehensive NGO profiles  
+  - Mission, history, funding needs
+- Public-facing NGO pages to showcase previous work
+- Direct donor–NGO contact links
 
-NGO Directory: Browse a comprehensive list of registered NGOs.
+---
 
-Direct Connection: View contact details and social links to reach out to NGOs directly.
+## 🛠️ Backend
+- RESTful APIs for user management and data retrieval
+- **Passport.js** authentication  
+  - Local Strategy  
+  - Google OAuth 2.0
+- MongoDB integration using **Mongoose**
+- Session persistence using **express-session**
 
+---
 
-🧑‍💻 Tech Stack
+## 🧑‍💻 Tech Stack
 
-Layer,Technologies Used
-Frontend,"EJS (Templating), CSS, HTML5, Bootstrap"
-Backend,"Node.js, Express.js"
-Database,"MongoDB, Mongoose"
-Authentication,Passport.js (Local + Google OAuth 2.0)
-Tools,"Git, Postman, Lodash"
+| Layer       | Technologies Used |
+|------------|------------------|
+| Frontend   | EJS, HTML5, CSS3, Bootstrap |
+| Backend    | Node.js, Express.js, Body-Parser, Lodash |
+| Database   | MongoDB, Mongoose, mongoose-findorcreate |
+| Auth       | Passport.js (Local + Google OAuth 2.0), Express-Session |
+| Tools      | Git, Postman, VS Code |
 
-📁 Project Structure
+---
 
+## 📁 Project Structure
+
+```plaintext
 PhilChar/
 ├── backend/
 │   ├── public/              # Static assets (CSS, Images)
-│   ├── views/               # EJS Templates (UI)
-│   │   ├── partials/        # Reusable headers/footers
+│   ├── views/               # EJS Templates
+│   │   ├── partials/        # Reusable components
 │   │   ├── home.ejs         # Landing page
-│   │   ├── ngo_profile.ejs  # Dynamic NGO profile page
 │   │   └── ...
-│   ├── app.js               # Main server entry point & routes
+│   ├── app.js               # Main server entry point
 │   ├── package.json         # Dependencies & scripts
-│   └── .env                 # Environment variables (Google Keys)
+│   └── .env                 # Environment variables (OAuth keys)
 └── README.md
+```
 
 
 
-🛠️ Local Setup Instructions
-Follow these steps to run the project locally on your machine.
+---
 
-1. Clone the repository
-Bash
+---
 
+## 🔐 Authentication (Passport.js)
+
+- **Dual Strategy Support**
+  - Email & Password authentication (Local Strategy)
+  - Google OAuth 2.0
+- **Session Management**
+  - Stateful sessions using `express-session`
+- **Role-Based Access Control**
+  - Donors cannot access NGO-specific routes
+  - NGOs cannot access donor-only routes
+
+---
+
+## 🛠️ Local Setup Instructions
+
+```bash
+# Clone the repository
 git clone https://github.com/yourusername/PhilChar.git
 cd PhilChar/backend
-2. Install Dependencies
-Bash
 
+# Install dependencies
 npm install
-3. Configure Environment Variables
-Create a .env file in the root directory and add your MongoDB URI and Google OAuth credentials:
 
-Code snippet
+# Configure environment variables
+# Create a .env file and add:
+# CLIENT_ID=your_google_client_id
+# CLIENT_SECRET=your_google_client_secret
 
-CLIENT_ID=your_google_client_id
-CLIENT_SECRET=your_google_client_secret
-PORT=4000
-4. Start the Server
-You can start the server using node or nodemon:
-
-Bash
-
+# Start the server
 node app.js
-# or
-nodemon app.js
-5. Access the App
-Open your browser and navigate to: http://localhost:4000
+```
 
-🔐 Authentication Flow (Passport.js)
-Selection: Users choose to sign in as a "Philanthropist" or an "NGO".
+---
 
-Strategy: The app uses passport-google-oauth20 for Google Sign-In and passport-local-mongoose for email/password.
 
-Persistence: Upon success, a session cookie is created. The backend checks req.isAuthenticated() to protect private routes like /listofngo.
+### 🧪 Testing
 
-🧪 Future Improvements
-Payment Gateway: Integration with Stripe/Razorpay for direct donations.
+- Routes and controllers tested via **Postman**  
+- End-to-end user flows validated manually  
+  *(Login → Match → Donate)*  
+- OAuth integration verified using live **Google Developer Console** credentials  
 
-Real-time Chat: Socket.io integration for communication between donors and NGOs.
+---
 
-Admin Dashboard: For verifying legitimate NGOs.
+### 🧾 License
 
-🧾 License
-This project is licensed under the ISC License.
+This project is licensed under the **ISC License**.
 
-💬 Contact
-For queries or collaboration: 📧 vedanghatekar@gmail.com
+---
+
+### 💬 Contact
+
+For queries or collaboration:  
+📧 [vedanghatekar@gmail.com](mailto:vedanghatekar@gmail.com)
